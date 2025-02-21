@@ -7,8 +7,8 @@ from langchain.vectorstores import FAISS
 from langchain.text_splitter import RecursiveCharacterTextSplitter, MarkdownHeaderTextSplitter
 from langchain.docstore.document import Document
 
-FOLDER_ID = "b1g4ftb11h6q95h77rnk"
-API_TOKEN = "AQVN2pFlKlEPq6jcHHi1IJ0w8RofrSSh4NBixT4A"
+FOLDER_ID = ""
+API_TOKEN = ""
 doc_uri = f"emb://{FOLDER_ID}/text-search-doc/latest"
 query_uri = f"emb://{FOLDER_ID}/text-search-query/latest"
 embed_url = "https://llm.api.cloud.yandex.net:443/foundationModels/v1/textEmbedding"
