@@ -1,0 +1,26 @@
+1. Открываем файл urls.py
+
+2. Добавляем '/' после путей chatbot и stats
+
+3. Исправляем name
+urlpatterns = [
+    path('', views.start, name='start') ,
+    path('chatbot/', views.chatbot, name='chatbot'),
+    path('stats/', views.stats, name='stats')
+]
+
+4. Открываем файл settings.py
+
+5. В INSTALLED_APPS добавляем значения 'chatbot', 'corsheaders'.
+
+6. Далее прописываем путь к шаблонам. В TEMPLATES добавляем следующую строку 'DIRS': [BASE_DIR / '..' / 'templates'],
+
+7. Прописываем путь к статическим файлам: 
+STATICFILES_DIRS = [
+	BASE_DIR / '..' / 'chatbot' / 'static'
+]
+
+8. Прописываем 
+STATIC_URL = '/static/'
+
+9. Убираем дублирование в MIDDLEWARE. Нужно удалить 'django.middleware.common.CommonMiddleware',
