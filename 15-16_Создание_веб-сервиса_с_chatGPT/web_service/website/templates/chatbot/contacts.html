@@ -1,0 +1,51 @@
+{% extends 'chatbot/base.html' %}
+
+{% block styles %}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #1e1e1e;
+        color: white;
+        text-align: center;
+        margin: 0;
+        padding: 20px;
+    }
+    .container {
+        max-width: 600px;
+        margin: auto;
+        background: #2a2a2a;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(255, 165, 0, 0.5);
+    }
+    h1 {
+        color: orange;
+    }
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+    li {
+        background: #333;
+        margin: 10px 0;
+        padding: 10px;
+        border-radius: 5px;
+    }
+</style>
+
+{% endblock %}
+
+{% block content %}
+{% load static %}
+
+<div class="container">
+    <h1>Список контактов</h1>
+    <ul id="contact-list">
+        <li>Иван Иванов - ivan@example.com</li>
+        <li>Мария Петрова - maria@example.com</li>
+        <li>Алексей Смирнов - alexey@example.com</li>
+    </ul>
+</div>
+
+{% endblock %}

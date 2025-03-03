@@ -11,6 +11,8 @@ from langchain.vectorstores import FAISS
 import re
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.docstore.document import Document
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel 
 
 load_dotenv()
 
@@ -93,13 +95,25 @@ def answer_index(system, topic, search_index, temp=1, verbose=1):
 
 app = FastAPI()
 
+app.add_middleware(
+	CORSMiddleware,
+	allow_origins=["*"],  
+	allow_credentials=True,
+	allow_methods=["*"],  
+	allow_headers=["*"],  
+)
+
 counter_post_answer = 0
 
+class ModelAnswer(BaseModel):
+    text: str    
+
 @app.post("/answer")
-async def answer(question: str):
+async def answer(question: ModelAnswer):
     global counter_post_answer
     counter_post_answer += 1
-    return answer_index(system, question, db, verbose=0)
+    answer = answer_index(system, question.text, db, verbose=0)
+    return {'message': answer}
 
 @app.get("/counter")
 async def counter():
