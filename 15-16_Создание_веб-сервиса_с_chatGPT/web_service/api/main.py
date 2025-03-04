@@ -13,6 +13,7 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.docstore.document import Document
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel 
+from fastapi.responses import HTMLResponse
 
 load_dotenv()
 
@@ -118,3 +119,17 @@ async def answer(question: ModelAnswer):
 @app.get("/counter")
 async def counter():
     return {"counter": counter_post_answer}
+
+@app.get("/contacts", response_class=HTMLResponse)
+async def contacts():
+    return """
+    <html>
+        <head><title>Контакты</title></head>
+        <body>
+            <h1>Контакты</h1>
+            <p>Email: your.email@example.com</p>
+            <p>Телефон: +1234567890</p>
+            <p>Адрес: 123 Main Street, City, Country</p>
+        </body>
+    </html>
+    """
